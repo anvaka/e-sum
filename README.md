@@ -1,6 +1,6 @@
 # e-sum
 
-Art project to visualize exponential sums of complex numbers. [Demo](https://anvaka.github.io/e-sum/?code=x%2F8%20%2B%205*cos%28x*101.824%29%20&bufferSize=12000&totalSteps=300000&spi=500).
+Art project to visualize complex exponential sums. [Demo](https://anvaka.github.io/e-sum/?code=x%2F8%20%2B%205*cos%28x*101.824%29%20&bufferSize=12000&totalSteps=300000&spi=500).
 
 ![demo](https://i.imgur.com/Wv9CaCS.png)
 
