@@ -2,8 +2,8 @@ const {useDecimal} = require('./config');
 const queryState = require('query-state');
 var qs = queryState({
   code: 'x / 3',
-  bufferSize: 12000,
-  totalSteps: 30000,
+  bufferSize: 10000,
+  totalSteps: 10000,
   spi: 500 // stepsPerIteration
 }, {
   useSearch: true
