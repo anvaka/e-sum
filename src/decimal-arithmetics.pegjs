@@ -9,11 +9,12 @@ Expression
     }
 
 Term
-  = head:Factor tail:(_ ("*" / "/" / "^") _ Factor)* {
+  = head:Factor tail:(_ ("*" / "/" / "^" / "%") _ Factor)* {
       return tail.reduce(function(result, element) {
         if (element[1] === "*") { return result + '.times(' + element[3] + ')'; }
         if (element[1] === "/") { return result + '.div(' + element[3] +')'; }
         if (element[1] === "^") { return result + '.pow(' + element[3] + ')'; }
+        if (element[1] === "%") { return result + '.mod(' + element[3] + ')'; }
       }, head);
     }
 
@@ -22,8 +23,16 @@ Factor
   / s:Number { return 'Decimal(' + s + ')'; }
   / trig
   / power
+  / root
 
-power = (log / ln / exp / pow)
+js = 
+ "abs(" v:Expression ws ")" { return Decimal.abs(v); }
+/ "ceil(" v:Expression ws ")" { return Decimal.ceil(v); }
+/ "floor(" v:Expression ws ")" { return Decimal.floor(v); }
+/ "round(" v:Expression ws ")" { return Decimal.round(v); }
+/ "random(" v:Expression? ws ")" { return 'Decimal.random()' + (v ? '.times(' + v + ')': '') ; }
+
+power = (log / ln / exp / pow / js)
 
 log = "log(" v:Expression ws ")"
   { return v+".log()"; }
@@ -37,7 +46,7 @@ exp = "exp(" v:Expression ws ")"
 pow = "pow(" ws base:Expression ws', 'ws exponent:Expression ')'
   { return  base + '.pow(' + exponent +')'; }
 
-trig = (sin / cos / tan / sec / csc / cot)
+trig = (sin / cos / tan / sec / csc / cot / invtrig)
 
 sin = "sin(" v:Expression ws ")"
   { return v+".sin()"; }
@@ -56,6 +65,10 @@ csc = "csc(" v:Expression ws ")"
 
 cot = "cot(" v:Expression ws ")"
   { return "Decimal(1).div("+v+".tan())"; }
+
+invtrig = "asin(" v:Expression ws ")" { return "Decimal.asin(" + v + ")"; }
+  / "acos(" v:Expression ws ")" { return "Decimal.acos(" + v + ")"; }
+  / "atan(" v:Expression ws ")" { return "Decimal.atan(" + v + ")"; }
 
 root = (sqrt)
 
