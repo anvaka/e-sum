@@ -1,6 +1,5 @@
 const wgl = require('w-gl');
 const bus = require('../bus');
-const LineStrip = require('./lines/LineStrip').default;
 
 module.exports = function createScene() {
   let lastSumCalculator;
@@ -109,7 +108,7 @@ module.exports = function createScene() {
     if (lines) webGLScene.removeChild(lines);
 
     let options = lastSumCalculator.getOptions();
-    lines = new LineStrip(Math.min(options.bufferSize), false);
+    lines = new wgl.LineStripCollection(Math.min(options.bufferSize), false);
     lines.color.r = lineR/255;
     lines.color.g = lineG/255;
     lines.color.b = lineB/255;
