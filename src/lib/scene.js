@@ -16,6 +16,9 @@ module.exports = function createScene() {
     listenToEvents();
 
     webGLScene = wgl.scene(canvas, {});
+    let gl = webGLScene.getGL();
+    gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+
     webGLScene.setClearColor(sceneR/255, sceneG/255, sceneB/255, sceneA)
     webGLScene.setPixelRatio(1);
 

@@ -59,7 +59,6 @@ function sumCalculator(options) {
     let start = window.performance.now();
     while (currentStep < maxTotalSteps && frameSteps < options.stepsPerIteration) {
       let pt = getNextPoint(currentStep);
-      pt.y = -pt.y;
       extendBoundingBoxIfNeeded(pt.x, pt.y);
       polyLine.add(pt.x, pt.y);
       currentStep += 1;
