@@ -20,7 +20,7 @@
     "vue-codemirror-lite": "^1.0.4",
     "vue-color": "^2.7.0",
     "vue-mathjax": "0.0.8",
-    "w-gl": "^0.8.0"
+    "w-gl": "^0.11.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
