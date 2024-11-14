@@ -10,7 +10,7 @@
       </div>
     </div>
     <div class="controls-container" v-if='webGLEnabled'>
-      <formula-editor :model="code" @toggle-settings="toggleSettings()"></formula-editor>
+      <formula-editor :model="code" @toggle-settings="toggleSettings"></formula-editor>
       <a
         href="#"
         class="help-title"
@@ -21,7 +21,7 @@
         <a
           class="generate-trigger"
           href="#"
-          @click.prevent="toggleSettings()"
+          @click.prevent="toggleSettings"
           title="Click here to toggle visualization settings"
         >{{settingsPanel.collapsed ? 'Show settings' : 'Hide settings' }}</a>
         <a
@@ -124,16 +124,15 @@
 </template>
 
 <script>
-import { VueMathjax } from "vue-mathjax";
-import FormulaEditor from "./components/FormulaEditor";
-import ColorPicker from "./components/ColorPicker";
-import About from "./components/About";
-import HelpIcon from "./components/Icon";
+import FormulaEditor from "./components/FormulaEditor.vue";
+import ColorPicker from "./components/ColorPicker.vue";
+import About from "./components/About.vue";
+import HelpIcon from "./components/Icon.vue";
 
-var isSmallScreen = require("./lib/isSmallScreen");
-var generateFunction = require("./lib/generate-function");
-var appState = require("./lib/appState");
-var bus = require("./bus");
+import isSmallScreen from "./lib/isSmallScreen";
+import generateFunction from "./lib/generate-function";
+import appState from "./lib/appState";
+import bus from "./bus";
 
 export default {
   name: "App",
@@ -141,13 +140,12 @@ export default {
     FormulaEditor,
     About,
     ColorPicker,
-    HelpIcon,
-    VueMathjax
+    HelpIcon
   },
   mounted() {
     bus.on("progress", this.onProgress);
   },
-  beforeDestroy() {
+  beforeUnmount() {
     bus.off("progress", this.onProgress);
   },
   data() {
@@ -209,7 +207,7 @@ export default {
       bus.fire("settings-collapsed", this.settingsPanel.collapsed);
     },
     generateNewFunction() {
-      var settings = generateFunction();
+      const settings = generateFunction();
       this.stepsPerIteration = settings.stepsPerIteration;
       this.totalSteps = settings.totalSteps;
       this.bufferSize = settings.bufferSize;
@@ -235,9 +233,9 @@ export default {
 };
 
 function exponentialStep(value) {
-  var dt = Math.pow(10, Math.floor(Math.log10(value)));
+  const dt = Math.pow(10, Math.floor(Math.log10(value)));
   if (value - dt === 0) {
-    // This is odd case when you are increasing number, but otherwise it's a good adjustment.
+    // This is an odd case when you are increasing the number, but otherwise, it's a good adjustment.
     return dt / 10;
   }
   return dt;
@@ -403,9 +401,6 @@ a {
     display: flex;
   }
 
-  // .row {
-  // margin-top: 4px;
-  // }
   select {
     margin-left: 14px;
   }
@@ -509,7 +504,6 @@ a.about-link {
 
   a.dirty {
     background-color: rgba(24, 63, 154, 1);
-    // animation: blink 1500ms ease-in-out infinite alternate;
   }
 
   a:first-child {

@@ -1,12 +1,11 @@
-const {useDecimal} = require('./config');
-const Decimal = require('decimal.js');
-const { encodeColor } = require("./encodeColor");
+import config from './config.js';
+import Decimal from 'decimal.js';
+import { encodeColor } from './encodeColor.js';
 
+const {useDecimal} = config;
 const PI_2 = useDecimal ? Decimal.acos(-1).times(2) : Math.PI * 2;
 
-module.exports = sumCalculator;
-
-function sumCalculator(options) {
+export default function sumCalculator(options) {
   const getNextPoint = useDecimal ? getNextDecimalPoint : getNextFloatPoint;
 
   let next;

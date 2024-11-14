@@ -1,5 +1,16 @@
-const {useDecimal} = require('./config');
-const queryState = require('query-state');
+import config from './config';
+import queryState from 'query-state';
+
+import sumCalculator from './sumCalculator.js';
+import createScene from './scene.js';
+import jsArithmethics from '../js-arithmetics.js';
+import decimalArithmetics from '../decimal-arithmetics';
+import Decimal from 'decimal.js';
+
+const {parse} = jsArithmethics;
+const {parseDecimal} = decimalArithmetics;
+const {useDecimal} = config;
+
 var qs = queryState({
   code: 'x / 3',
   bufferSize: 10000,
@@ -9,11 +20,6 @@ var qs = queryState({
   useSearch: true
 });
 
-const sumCalculator = require('./sumCalculator.js');
-const createScene = require('./scene');
-const {parse} = require('../js-arithmetics');
-const {parse:parseDecimal} = require('../decimal-arithmetics');
-const Decimal = require('decimal.js');
 let shouldIgnoreCodeChange = false;
 window.Decimal = Decimal;
 Decimal.PI = Decimal.acos(-1);
@@ -62,7 +68,7 @@ var code = {
   }
 }
 
-var appState = {
+const appState = {
   code,
   webGLEnabled: scene.webGLEnabled,
 
@@ -106,7 +112,6 @@ var appState = {
   },
 }
 
-module.exports = appState
 
 code.setCode(persistedState.code, true);
 
@@ -135,3 +140,5 @@ return f;`);
     return null;
   }
 }
+
+export default appState;

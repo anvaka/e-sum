@@ -72,7 +72,7 @@ function getDivider(cap = 100, exponent = 0) {
   return divider;
 }
 
-module.exports = function generate() {
+export default function generate() {
   let randomGenerator = generators[Math.floor(Math.random() * generators.length)]
   return randomGenerator();
 }

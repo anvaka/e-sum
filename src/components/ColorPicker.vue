@@ -1,47 +1,87 @@
 <template>
-  <div class='color-container'>
-    <input type='text' @click.prevent='showPicker' :value='color' readonly class='color-label'>
-    <div class='picker' @click='hidePicker' v-if='opened' ref='pickerOverlay'>
-      <chrome-color-picker :value='color' :style='getPickerStyle()' @input='onChanged'></chrome-color-picker>
+  <div class="color-container" ref="root">
+    <input
+      type="text"
+      @click.prevent="showPicker"
+      :value="color"
+      readonly
+      class="color-label"
+    />
+    <div
+      class="picker"
+      @click="hidePicker"
+      v-if="opened"
+      ref="pickerOverlay"
+    >
+      <chrome-color-picker
+        :value="color"
+        :style="getPickerStyle()"
+        @input="onChanged"
+      ></chrome-color-picker>
     </div>
   </div>
 </template>
 
 <script>
-import { Sketch  } from 'vue-color';
-export default {
-  name: 'ColorPicker',
-  props: ['color'],
+import { defineComponent, ref } from "vue";
+import { Sketch } from "@lk77/vue3-color";
+
+export default defineComponent({
+  name: "ColorPicker",
   components: {
-    'chrome-color-picker': Sketch
+    "chrome-color-picker": Sketch,
   },
-  data() {
-    return {
-      opened: false,
-    }
+  props: {
+    color: {
+      type: String,
+      required: true,
+    },
   },
-  methods: {
-    showPicker() {
-      this.opened = true;
-    },
-    hidePicker(e) {
-      if (e.target === this.$refs.pickerOverlay) this.opened = false;
-    },
-    getPickerStyle() {
-      let rect = this.$el.getBoundingClientRect();
-      return {
-        position: 'absolute',
-        left: (rect.left - 30) + 'px',
-        top: (rect.top - 179) + 'px'
+  setup(props, { emit }) {
+    const opened = ref(false);
+    const pickerOverlay = ref(null);
+    const root = ref(null);
+
+    const showPicker = () => {
+      opened.value = true;
+    };
+
+    const hidePicker = (e) => {
+      if (e.target === pickerOverlay.value) {
+        opened.value = false;
       }
-    },
-    onChanged(e) {
-      this.$emit('changed', e.rgba);
-    }
-  }
-}
+    };
+
+    const getPickerStyle = () => {
+      const rect = root.value?.getBoundingClientRect() || {
+        left: 0,
+        top: 0,
+      };
+      return {
+        position: "absolute",
+        left: rect.left - 30 + "px",
+        top: rect.top - 179 + "px",
+      };
+    };
+
+    const onChanged = (e) => {
+      emit("changed", e.rgba);
+    };
+
+    return {
+      opened,
+      pickerOverlay,
+      root,
+      showPicker,
+      hidePicker,
+      getPickerStyle,
+      onChanged,
+    };
+  },
+});
 </script>
-<style lang='stylus'>
+
+<style lang="stylus">
 .color-container {
   width: 100%;
 }
@@ -57,5 +97,4 @@ input[type="text"].color-label {
   cursor: pointer;
   font-size: 12px;
 }
-
 </style>

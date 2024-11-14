@@ -1,6 +1,7 @@
 /**
  * This is a simple way to pass messages between application components.
  */
-var eventify = require('ngraph.events');
+import eventify from 'ngraph.events';
 
-module.exports = eventify({});
+const bus = eventify({});
+export default bus;

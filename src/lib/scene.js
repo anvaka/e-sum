@@ -1,7 +1,7 @@
-const wgl = require('w-gl');
-const bus = require('../bus');
+import {isWebGLEnabled, scene, LineStripCollection} from 'w-gl';
+import bus from '../bus.js';
 
-module.exports = function createScene() {
+export default function createScene() {
   let lastSumCalculator;
   let lastFrame;
   let touched = false;
@@ -11,11 +11,11 @@ module.exports = function createScene() {
   let canvas = document.getElementById('scene-canvas');
   let webGLScene;
 
-  let webGLEnabled = wgl.isWebGLEnabled(canvas);
+  let webGLEnabled = isWebGLEnabled(canvas);
   if (webGLEnabled) {
     listenToEvents();
 
-    webGLScene = wgl.scene(canvas, {});
+    webGLScene = scene(canvas, {});
     let gl = webGLScene.getGL();
     gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
 
@@ -111,7 +111,7 @@ module.exports = function createScene() {
     if (lines) webGLScene.removeChild(lines);
 
     let options = lastSumCalculator.getOptions();
-    lines = new wgl.LineStripCollection(Math.min(options.bufferSize), {allowColors: false, is3D: false});
+    lines = new LineStripCollection(Math.min(options.bufferSize), {allowColors: false, is3D: false});
     lines.color.r = lineR/255;
     lines.color.g = lineG/255;
     lines.color.b = lineB/255;

@@ -1,30 +1,57 @@
 <template>
-  <div class='about'>
-    <div class='background absolute' @click.prevent='close'></div>
-    <div class='content'>
-      <h3>E-Sum <a class='close bold' href='#' @click.prevent='close'>close</a></h3>
+  <div class="about">
+    <div class="background absolute" @click.prevent="close"></div>
+    <div class="content">
+      <h3>
+        E-Sum
+        <a class="close bold" href="#" @click.prevent="close">close</a>
+      </h3>
       <div>
-        <p>This website visualizes exponential sums. An exponential sum is an expression of the form</p>
+        <p>
+          This website visualizes exponential sums. An exponential sum is an
+          expression of the form
+        </p>
         <vue-mathjax formula="$$\sum_{x=1}^n e^{2\pi i f(x)}$$"></vue-mathjax>
         <p>Which translates to complex plane as</p>
-        <vue-mathjax formula="$$x = \cos(2\pi f(x))\\y = sin(2\pi f(x))$$"></vue-mathjax>
-        <p>Sequence of partial sums is plotted as sequence of connected points by this visualization.</p>
+        <vue-mathjax
+          formula="$$x = \cos(2\pi f(x))\\y = sin(2\pi f(x))$$"
+        ></vue-mathjax>
         <p>
-          <vue-mathjax formula="Type the formula for $f(x)$ to generate a new visualization"></vue-mathjax>
+          Sequence of partial sums is plotted as sequence of connected points by
+          this visualization.
+        </p>
+        <p>
+          <vue-mathjax
+            formula="Type the formula for $f(x)$ to generate a new visualization"
+          ></vue-mathjax>
         </p>
       </div>
       <ul>
         <li>
-          <a href='https://github.com/anvaka/e-sum' class='highlighted'>Learn more </a> about this project on GitHub
-        </li><li>
-        Stay tuned for updates on <a href='https://twitter.com/anvaka' class='highlighted'>Twitter</a>
-        </li><li>
-        <a href='https://www.patreon.com/anvaka' class='highlighted'>Support development</a>.
+          <a
+            href="https://github.com/anvaka/e-sum"
+            class="highlighted"
+            >Learn more</a
+          >
+          about this project on GitHub
         </li>
-
+        <li>
+          Stay tuned for updates on
+          <a href="https://twitter.com/anvaka" class="highlighted">Twitter</a>
+        </li>
+        <li>
+          <a
+            href="https://www.patreon.com/anvaka"
+            class="highlighted"
+            >Support development</a
+          >.
+        </li>
       </ul>
-      <p>With passion,<br/> Anvaka</p>
-      <a href='#' @click.prevent='close' class='large-close bold'>
+      <p>
+        With passion,<br />
+        Anvaka
+      </p>
+      <a href="#" @click.prevent="close" class="large-close bold">
         close
       </a>
     </div>
@@ -35,24 +62,25 @@
 export default {
   mounted() {
     this.closeHandler = (e) => {
-      if (e.keyCode === 27) {
+      if (e.key === 'Escape') {
         e.preventDefault();
         this.close();
       }
-    }
+    };
     document.addEventListener('keyup', this.closeHandler);
   },
-  beforeDestroy() {
+  beforeUnmount() {
     document.removeEventListener('keyup', this.closeHandler);
   },
   methods: {
     close() {
       this.$emit('close');
-    }
-  }
-}
+    },
+  },
+};
 </script>
-<style lang='stylus'>
+
+<style lang="stylus">
 @import "../shared.styl";
 
 .about {
