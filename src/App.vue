@@ -10,7 +10,7 @@
       </div>
     </div>
     <div class="controls-container" v-if='webGLEnabled'>
-      <formula-editor :model="code" @toggle-settings="toggleSettings"></formula-editor>
+      <formula-editor :model="code" @update:model="onUpdateCode" @toggle-settings="toggleSettings"></formula-editor>
       <a
         href="#"
         class="help-title"
@@ -183,6 +183,9 @@ export default {
     }
   },
   watch: {
+    code(newValue) {
+      appState.code.setCode(newValue.code, true);
+    },
     stepsPerIteration(newValue) {
       appState.setStepsPerIteration(newValue);
     },
@@ -201,6 +204,9 @@ export default {
     draw() {
       appState.redraw();
     },
+    onUpdateCode(newCode) {
+      this.code = newCode;
+    },
     toggleSettings() {
       this.settingsPanel.collapsed = !this.settingsPanel.collapsed;
       this.aboutVisible = false;
@@ -212,7 +218,8 @@ export default {
       this.totalSteps = settings.totalSteps;
       this.bufferSize = settings.bufferSize;
       this.updateLineColor(settings.color);
-      appState.code.setCode(settings.code, true);
+      this.code = settings.code;
+      // appState.code.setCode(settings.code, true);
       appState.ignoreNextEditorChange();
     },
     onSubmit() {

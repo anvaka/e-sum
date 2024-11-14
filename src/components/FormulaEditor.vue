@@ -31,6 +31,7 @@ export default {
       required: true,
     },
   },
+  emits: ['update:model'],
   setup(props, { emit }) {
     const code = ref(props.model.code);
     const pendingSetCode = ref(0);
