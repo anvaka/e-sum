@@ -103,13 +103,13 @@
           <div class="row">
             <div class="col">Line Color</div>
             <div class="col">
-              <color-picker :color="lineColor" @changed="updateLineColor"></color-picker>
+              <color-picker v-model="lineColor" @changed="updateLineColor"></color-picker>
             </div>
           </div>
           <div class="row">
             <div class="col">Background color</div>
             <div class="col">
-              <color-picker :color="fillColor" @changed="updateFillColor"></color-picker>
+              <color-picker v-model="fillColor" @changed="updateFillColor"></color-picker>
             </div>
           </div>
 

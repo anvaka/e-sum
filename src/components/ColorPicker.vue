@@ -3,7 +3,7 @@
     <input
       type="text"
       @click.prevent="showPicker"
-      :value="color"
+      :value="modelValue"
       readonly
       class="color-label"
     />
@@ -14,16 +14,16 @@
       ref="pickerOverlay"
     >
       <chrome-color-picker
-        :value="color"
+        @update:model-value="updateValue" 
+        v-model="colorValue"
         :style="getPickerStyle()"
-        @input="onChanged"
       ></chrome-color-picker>
     </div>
   </div>
 </template>
 
 <script>
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref, computed } from "vue";
 import { Sketch } from "@lk77/vue3-color";
 
 export default defineComponent({
@@ -32,7 +32,7 @@ export default defineComponent({
     "chrome-color-picker": Sketch,
   },
   props: {
-    color: {
+    modelValue: {
       type: String,
       required: true,
     },
@@ -41,6 +41,7 @@ export default defineComponent({
     const opened = ref(false);
     const pickerOverlay = ref(null);
     const root = ref(null);
+    const colorValue = ref(props.modelValue);
 
     const showPicker = () => {
       opened.value = true;
@@ -64,18 +65,18 @@ export default defineComponent({
       };
     };
 
-    const onChanged = (e) => {
-      emit("changed", e.rgba);
-    };
-
     return {
+      colorValue,
       opened,
       pickerOverlay,
       root,
       showPicker,
       hidePicker,
       getPickerStyle,
-      onChanged,
+      updateValue(value) {
+        colorValue.value = value;
+        emit('changed', value.rgba)
+      }
     };
   },
 });
