@@ -82,7 +82,8 @@ export default function sumCalculator(options) {
     // const r = PI_2 * 12 * n;
     px += Math.cos(phi); // * Math.cos(r) - Math.sin(phi) * Math.sin(r);
     py += Math.sin(phi); // * Math.cos(r) + Math.cos(phi) * Math.sin(r);
-    return {x: px, y: py}
+    let z = 0;
+    return {x: px, y: py, z: z };
   }
 
   function extendBoundingBoxIfNeeded(px, py) {

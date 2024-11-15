@@ -90,6 +90,7 @@ export default {
         if (pendingSetCode.value) {
           clearTimeout(pendingSetCode.value);
         }
+        // if (props.model.code === code.value) return;
         syncScroll();
 
         // Throttle updates to improve performance

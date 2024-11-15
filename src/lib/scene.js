@@ -111,12 +111,12 @@ export default function createScene() {
     if (lines) webGLScene.removeChild(lines);
 
     let options = lastSumCalculator.getOptions();
-    lines = new LineStripCollection(Math.min(options.bufferSize), {allowColors: false, is3D: false});
+    lines = new LineStripCollection(Math.min(options.bufferSize), {allowColors: false, is3D: true});
     lines.color.r = lineR/255;
     lines.color.g = lineG/255;
     lines.color.b = lineB/255;
     lines.color.a = lineA;
-    lines.add({x: 0, y: 0});
+    lines.add({x: 0, y: 0, z: 0});
     lastSumCalculator.setPolyLine(lines);
 
     webGLScene.appendChild(lines);

@@ -218,8 +218,8 @@ export default {
       this.totalSteps = settings.totalSteps;
       this.bufferSize = settings.bufferSize;
       this.updateLineColor(settings.color);
-      this.code = settings.code;
-      // appState.code.setCode(settings.code, true);
+      appState.code.setCode(settings.code, true);
+      this.code = appState.code;
       appState.ignoreNextEditorChange();
     },
     onSubmit() {
