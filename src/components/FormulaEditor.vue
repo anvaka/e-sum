@@ -90,6 +90,7 @@ export default {
         if (pendingSetCode.value) {
           clearTimeout(pendingSetCode.value);
         }
+        // TODO: I think there is an error here that causes double refresh/rerender?
         // if (props.model.code === code.value) return;
         syncScroll();
 
