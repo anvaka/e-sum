@@ -23,6 +23,7 @@ When you find something you like copy a link to the page - and share it :). A fe
 * [Dog](https://anvaka.github.io/e-sum/?code=x%20%2B%20x%20*%20x%20*%20x%20%2F35&bufferSize=12000&totalSteps=3000&spi=500)
 * [Batman](https://anvaka.github.io/e-sum/?code=x%2F25%20%2B%20x*x*x%2F100&bufferSize=12000&totalSteps=12000&spi=500)
 * [Spinning Lotus](https://anvaka.github.io/e-sum/?code=x%2F88%20%2B%20cos%28x*84.235002%29&bufferSize=30000&totalSteps=30000000&spi=500)
+* [Explorer](https://anvaka.github.io/e-sum/?code=x%5E2%2FPI&bufferSize=42000&totalSteps=420000&spi=500)
 
 ## What is going on here?
 
