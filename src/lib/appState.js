@@ -8,7 +8,7 @@ import decimalArithmetics from '../decimal-arithmetics';
 import Decimal from 'decimal.js';
 
 const {parse} = jsArithmethics;
-const {parseDecimal} = decimalArithmetics;
+const {parse: parseDecimal} = decimalArithmetics;
 const {useDecimal} = config;
 
 var qs = queryState({
