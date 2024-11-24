@@ -20,11 +20,12 @@ When you find something you like copy a link to the page - and share it :). A fe
 * [Stars](https://anvaka.github.io/e-sum/?code=x%2F5%20%2B%20cos%28x*1%2FPI*22%29%2B%20sin%28x*64%2FPI*2%29&bufferSize=90000&totalSteps=3000000&spi=5000)
 * [Particles](https://anvaka.github.io/e-sum/?code=x%2F8%20%2B%205*cos%28x*101.824%29%20&bufferSize=12000&totalSteps=300000&spi=500)
 * [Flat dimension](https://anvaka.github.io/e-sum/?code=x%20%2F%2036.75247%20%2B%206.084%20*%20cos%28x%20*%2026.19276169745728%29&bufferSize=42000&totalSteps=11142000&spi=500)
+* [Crawler](https://anvaka.github.io/e-sum/?code=0.38254%20*%20cos%280.33999%20*%20x%29%20%2B%20cos%2868.96997328962782%20*%20x%29&bufferSize=42000&totalSteps=3342000&spi=500)
 * [Dog](https://anvaka.github.io/e-sum/?code=x%20%2B%20x%20*%20x%20*%20x%20%2F35&bufferSize=12000&totalSteps=3000&spi=500)
 * [Batman](https://anvaka.github.io/e-sum/?code=x%2F25%20%2B%20x*x*x%2F100&bufferSize=12000&totalSteps=12000&spi=500)
 * [Spinning Lotus](https://anvaka.github.io/e-sum/?code=x%2F88%20%2B%20cos%28x*84.235002%29&bufferSize=30000&totalSteps=30000000&spi=500)
 * [Explorer](https://anvaka.github.io/e-sum/?code=x%5E2%2FPI&bufferSize=42000&totalSteps=420000&spi=500)
-
+ 
 ## What is going on here?
 
 An exponential sum is the following expression:
