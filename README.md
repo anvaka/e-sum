@@ -43,7 +43,7 @@ Sequence of partial sums is plotted as sequence of connected points by this visu
 
 ## Known issues
 
-If you see your visualization "runs away" - likely you are running into floating point rounding errors.
+If you see your visualization "runs away" - it could be either a floating point error, or "diverging" sum.
 To avoid the errors - reduce the `Total steps` value in the visualization settings, so that summation
 stops earlier.
 
