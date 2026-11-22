@@ -40,6 +40,10 @@
           <a href="https://twitter.com/anvaka" class="highlighted">Twitter</a>
         </li>
         <li>
+          See my other projects at
+          <a href="https://anvaka.com" class="highlighted">anvaka.com</a>
+        </li>
+        <li>
           <a
             href="https://www.patreon.com/anvaka"
             class="highlighted"

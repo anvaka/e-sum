@@ -69,6 +69,8 @@ The project was inspired by a small [conversation on Twitter](https://twitter.co
 
 If you liked it please let me know. Give it a star, or [become a patron](https://www.patreon.com/anvaka).
 
+See my other projects at [anvaka.com](https://anvaka.com).
+
 I hope you find it amusing :).
 
 ## License
